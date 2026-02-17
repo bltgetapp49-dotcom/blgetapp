@@ -237,6 +237,73 @@
         border: 1px solid #e0f9f7;
       }
 
+      .plan-example-section {
+        margin: 15px 0;
+      }
+
+      .examples-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+      }
+
+      .plan-example-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .plan-example-item {
+        background: #f9fafb;
+        border: 1px solid #e0f9f7;
+        border-left: 3px solid #16504a;
+        border-radius: 8px;
+        padding: 12px;
+      }
+
+      .plan-example-item.extra-example {
+        display: none;
+      }
+
+      .plan-example-section.expanded .plan-example-item.extra-example {
+        display: block;
+      }
+
+      .example-line {
+        margin: 4px 0;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #555;
+      }
+
+      .example-line.main {
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      .example-line.percentage {
+        font-weight: 700;
+        color: #16504a;
+      }
+
+      .show-more-btn {
+        margin-top: 10px;
+        border: 1px solid #16504a;
+        color: #16504a;
+        background: white;
+        border-radius: 999px;
+        padding: 7px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .show-more-btn:hover {
+        background: #16504a;
+        color: #fff;
+      }
+
       .info-section {
         background: white;
         padding: 20px;
@@ -407,10 +474,10 @@
         <div class="lang-menu">
           <button class="lang-btn"><i class="bx bx-globe"></i></button>
           <div class="lang-dropdown">
-            <a href="/set-lang/en">🇺🇸 English</a>
-            <a href="/set-lang/cs">🇨🇿 Čeština</a>
-            <a href="/set-lang/hr">🇭🇷 Hrvatski</a>
-            <a href="/set-lang/hu">🇭🇺 Magyar</a>
+            <a href="/set-lang/en">🇺🇸 <%= t.lang_english %></a>
+            <a href="/set-lang/cs">🇨🇿 <%= t.lang_czech %></a>
+            <a href="/set-lang/hr">🇭🇷 <%= t.lang_croatian %></a>
+            <a href="/set-lang/hu">🇭🇺 <%= t.lang_hungarian %></a>
           </div>
         </div>
       </div>
@@ -435,44 +502,84 @@
               class="bx bxs-right-arrow-circle"
               style="color: #16504a; margin-right: 8px"
             ></i
-            ><%= t.flexible_returns %>
+            ><%= t.flexible_returns_plans_title %>
           </div>
           <div class="plan-subtitle"><%= t.minimum_plan %></div>
           <div class="plan-description"><%= t.plan_description_flex %></div>
 
           <div class="plan-returns">
             <div class="returns-label"><%= t.potential_returns %></div>
-            <div class="returns-value">19/100% <small>PR</small></div>
             <div class="earning-period"><%= t.earns_daily %></div>
-            <div class="profit-breakdown">
-              <p>
-                <strong
-                  ><%= t.example_with_deposit %> €50 <%= t.minimum_deposit
-                  %>:</strong
-                >
-              </p>
-              <p><%= t.daily_profit_label %> €950</p>
+            <ul class="plan-features">
+              <li>
+                <span class="highlight"><%= t.withdrawal_period %></span> <%=
+                t.withdrawal_anytime %>
+              </li>
+              <li>
+                <span class="highlight"><%= t.rewards_header %></span> <%=
+                t.rewards_yes %>
+              </li>
+            </ul>
+            <div class="plan-example-section" data-example-section>
+              <div class="examples-title">
+                <%= t.deposit_totaling_examples %>
+              </div>
+              <div class="plan-example-list">
+                <div class="plan-example-item">
+                  <p class="example-line main"><%= t.flex_example_1_main %></p>
+                  <p class="example-line"><%= t.flex_example_1_calc %></p>
+                  <p class="example-line percentage">
+                    <%= t.flex_example_1_percent %>
+                  </p>
+                </div>
+                <div class="plan-example-item">
+                  <p class="example-line main"><%= t.flex_example_2_main %></p>
+                  <p class="example-line"><%= t.flex_example_2_calc %></p>
+                  <p class="example-line percentage">
+                    <%= t.flex_example_2_percent %>
+                  </p>
+                </div>
+                <div class="plan-example-item extra-example">
+                  <p class="example-line main"><%= t.flex_example_3_main %></p>
+                  <p class="example-line"><%= t.flex_example_3_calc %></p>
+                  <p class="example-line percentage">
+                    <%= t.flex_example_3_percent %>
+                  </p>
+                </div>
+                <div class="plan-example-item extra-example">
+                  <p class="example-line main"><%= t.flex_example_4_main %></p>
+                  <p class="example-line"><%= t.flex_example_4_calc %></p>
+                  <p class="example-line percentage">
+                    <%= t.flex_example_4_percent %>
+                  </p>
+                </div>
+                <div class="plan-example-item extra-example">
+                  <p class="example-line main"><%= t.flex_example_5_main %></p>
+                  <p class="example-line"><%= t.flex_example_5_calc %></p>
+                  <p class="example-line percentage">
+                    <%= t.flex_example_5_percent %>
+                  </p>
+                </div>
+                <div class="plan-example-item extra-example">
+                  <p class="example-line main"><%= t.flex_example_6_main %></p>
+                  <p class="example-line"><%= t.flex_example_6_calc %></p>
+                  <p class="example-line percentage">
+                    <%= t.flex_example_6_percent %>
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                class="show-more-btn"
+                data-show-more-btn
+                data-more-label="<%= t.show_more %>"
+                data-less-label="<%= t.show_less %>"
+                aria-expanded="false"
+              >
+                <%= t.show_more %>
+              </button>
             </div>
           </div>
-
-          <ul class="plan-features">
-            <li>
-              <span class="highlight"><%= t.minimum_deposit %></span> 50€
-              <div class="profit-calc"><%= t.totaling %> €1,000</div>
-            </li>
-            <li>
-              <span class="highlight"><%= t.maximum_deposit %></span> 5,000€
-              <div class="profit-calc"><%= t.totaling %> €100,000</div>
-            </li>
-            <li>
-              <span class="highlight"><%= t.withdrawal_period %></span> <%=
-              t.withdrawal_anytime %>
-            </li>
-            <li>
-              <span class="highlight"><%= t.rewards_header %></span> <%=
-              t.rewards_yes %>
-            </li>
-          </ul>
         </div>
 
         <!-- FIXED RETURNS PLAN -->
@@ -482,44 +589,78 @@
               class="bx bxs-right-arrow-circle"
               style="color: #16504a; margin-right: 8px"
             ></i
-            ><%= t.fixed_returns %>
+            ><%= t.fixed_returns_plans_title %>
           </div>
           <div class="plan-subtitle"><%= t.steady_growth %></div>
           <div class="plan-description"><%= t.plan_description_fixed %></div>
 
           <div class="plan-returns">
             <div class="returns-label"><%= t.potential_returns %></div>
-            <div class="returns-value">19/100% <small>PR</small></div>
             <div class="earning-period"><%= t.earns_weekly %></div>
-            <div class="profit-breakdown">
-              <p>
-                <strong
-                  ><%= t.example_with_deposit %> €2,500 <%= t.minimum_deposit
-                  %>:</strong
-                >
-              </p>
-              <p><%= t.weekly_profit_label %> €47,500</p>
+            <ul class="plan-features">
+              <li>
+                <span class="highlight"><%= t.withdrawal_period %></span> <%=
+                t.withdrawal_weekly %>
+              </li>
+              <li>
+                <span class="highlight"><%= t.rewards_header %></span> <%=
+                t.rewards_yes %> + <%= t.loyalty_rewards %>
+              </li>
+            </ul>
+
+            <div class="plan-example-section" data-example-section>
+              <div class="examples-title">
+                <%= t.deposit_totaling_examples %>
+              </div>
+              <div class="plan-example-list">
+                <div class="plan-example-item">
+                  <p class="example-line main"><%= t.fixed_example_1_main %></p>
+                  <p class="example-line"><%= t.fixed_example_1_calc %></p>
+                  <p class="example-line percentage">
+                    <%= t.fixed_example_1_percent %>
+                  </p>
+                </div>
+                <div class="plan-example-item">
+                  <p class="example-line main"><%= t.fixed_example_2_main %></p>
+                  <p class="example-line"><%= t.fixed_example_2_calc %></p>
+                  <p class="example-line percentage">
+                    <%= t.fixed_example_2_percent %>
+                  </p>
+                </div>
+                <div class="plan-example-item extra-example">
+                  <p class="example-line main"><%= t.fixed_example_3_main %></p>
+                  <p class="example-line"><%= t.fixed_example_3_calc %></p>
+                  <p class="example-line percentage">
+                    <%= t.fixed_example_3_percent %>
+                  </p>
+                </div>
+                <div class="plan-example-item extra-example">
+                  <p class="example-line main"><%= t.fixed_example_4_main %></p>
+                  <p class="example-line"><%= t.fixed_example_4_calc %></p>
+                  <p class="example-line percentage">
+                    <%= t.fixed_example_4_percent %>
+                  </p>
+                </div>
+                <div class="plan-example-item extra-example">
+                  <p class="example-line main"><%= t.fixed_example_5_main %></p>
+                  <p class="example-line"><%= t.fixed_example_5_calc %></p>
+                  <p class="example-line percentage">
+                    <%= t.fixed_example_5_percent %>
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                class="show-more-btn"
+                data-show-more-btn
+                data-more-label="<%= t.show_more %>"
+                data-less-label="<%= t.show_less %>"
+                aria-expanded="false"
+              >
+                <%= t.show_more %>
+              </button>
             </div>
           </div>
-
-          <ul class="plan-features">
-            <li>
-              <span class="highlight"><%= t.minimum_deposit %></span> 50€
-              <div class="profit-calc"><%= t.totaling %> €1,000</div>
-            </li>
-            <li>
-              <span class="highlight"><%= t.maximum_deposit %></span> 50,000€
-              <div class="profit-calc"><%= t.totaling %> €1000,000</div>
-            </li>
-            <li>
-              <span class="highlight"><%= t.withdrawal_period %></span> <%=
-              t.withdrawal_weekly %>
-            </li>
-            <li>
-              <span class="highlight"><%= t.rewards_header %></span> <%=
-              t.rewards_yes %> + <%= t.loyalty_rewards %>
-            </li>
-          </ul>
         </div>
       </div>
 
@@ -532,19 +673,17 @@
         </p>
         <p><%= t.exchange_transmission %> <%= t.interest_distributed %></p>
         <div class="example-box">
-          <strong>Example:</strong> <%= t.deposit_date %> November 10 at 5:00 PM
-          (UTC+8), <%= t.interest_credited %> November 11 at 6:00 PM (UTC+8).
+          <strong><%= t.example_deposit %></strong> <%=
+          t.flexible_returns_example %>
         </div>
 
         <p style="margin-top: 15px; font-weight: 600; color: #1a1a1a">
           <%= t.fixed_returns_label %>
         </p>
-        <p>
-          For investors in the fixed returns plan, you will receive <%=
-          t.consistent_payouts %>. <%= t.free_airdrop %>
-        </p>
+        <p><%= t.fixed_returns_payout_info %></p>
         <div class="example-box">
-          <strong>Example:</strong> <%= t.fixed_returns_example %>
+          <strong><%= t.example_deposit %></strong> <%= t.fixed_returns_example
+          %>
         </div>
       </div>
 
@@ -590,5 +729,20 @@
         <%= t.nav_wallet %>
       </a>
     </div>
+
+    <script>
+      document.querySelectorAll("[data-show-more-btn]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const section = button.closest("[data-example-section]");
+          if (!section) return;
+
+          const isExpanded = section.classList.toggle("expanded");
+          button.setAttribute("aria-expanded", String(isExpanded));
+          button.textContent = isExpanded
+            ? button.dataset.lessLabel
+            : button.dataset.moreLabel;
+        });
+      });
+    </script>
   </body>
 </html>
