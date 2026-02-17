@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= t.about_us %></title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+        padding-bottom: 90px;
+        color: #1a1a1a;
+      }
+
+      .top-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .avatar {
+        width: 35px;
+        height: 35px;
+        background: #16504a;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
+
+      .top-icons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .top-icons i {
+        font-size: 24px;
+        color: #16504a;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .top-icons i:hover {
+        color: #2dbaa8;
+      }
+
+      .content-container {
+        padding: 20px;
+      }
+
+      .section-header {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        color: #1a1a1a;
+        text-align: center;
+      }
+
+      .hero-section {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fc 100%);
+        padding: 40px 20px;
+        border-radius: 16px;
+        text-align: center;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(64, 224, 208, 0.2);
+      }
+
+      .hero-icon {
+        font-size: 56px;
+        color: #16504a;
+        margin-bottom: 15px;
+      }
+      .hero-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #1a1a1a;
+      }
+      .hero-subtitle {
+        font-size: 16px;
+        color: #16504a;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+      .hero-text {
+        font-size: 15px;
+        color: #555;
+        line-height: 1.8;
+      }
+
+      .info-section {
+        background: white;
+        padding: 24px;
+        border-radius: 14px;
+        margin-bottom: 18px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        border-left: 4px solid #16504a;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .info-section:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .info-section h3 {
+        font-size: 18px;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+      }
+      .info-section h3 i {
+        color: #16504a;
+        font-size: 24px;
+      }
+      .info-section p {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.8;
+      }
+
+      .info-section ul {
+        list-style: none;
+        margin-top: 10px;
+      }
+
+      .info-section li {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.8;
+        padding-left: 20px;
+        position: relative;
+        margin-bottom: 8px;
+      }
+
+      .info-section li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #16504a;
+        font-weight: bold;
+      }
+
+      .certifications-section {
+        background: white;
+        padding: 24px;
+        border-radius: 14px;
+        margin-bottom: 18px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        border-left: 4px solid #16504a;
+      }
+
+      .certifications-section h3 {
+        font-size: 18px;
+        color: #1a1a1a;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+      }
+
+      .certifications-section h3 i {
+        color: #16504a;
+        font-size: 24px;
+      }
+
+      .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+      }
+
+      .cert-badge {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        border: 2px solid #16504a;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .cert-badge:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(64, 224, 208, 0.3);
+        background: #16504a;
+      }
+
+      .cert-badge:hover .cert-icon,
+      .cert-badge:hover .cert-name {
+        color: white;
+      }
+
+      .cert-icon {
+        font-size: 28px;
+        margin-bottom: 8px;
+        transition: color 0.3s;
+        color: #16504a;
+      }
+
+      .cert-name {
+        font-size: 12px;
+        font-weight: 600;
+        color: #1a1a1a;
+        transition: color 0.3s;
+      }
+
+      .contact-info {
+        background: white;
+        padding: 24px;
+        border-radius: 14px;
+        margin-bottom: 18px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        border-left: 4px solid #16504a;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 18px;
+      }
+
+      .contact-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .contact-icon {
+        width: 48px;
+        height: 48px;
+        background: #16504a;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+
+      .contact-text h4 {
+        font-size: 15px;
+        color: #1a1a1a;
+        font-weight: 600;
+      }
+      .contact-text p {
+        font-size: 13px;
+        color: #666;
+        margin-top: 2px;
+      }
+
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: white;
+        display: flex;
+        justify-content: space-around;
+        padding: 12px 0;
+        border-top: 1px solid #eee;
+        z-index: 100;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .nav-item {
+        text-align: center;
+        color: #999;
+        font-size: 10px;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .nav-item:hover {
+        color: #16504a;
+      }
+
+      .nav-item i {
+        display: block;
+        font-size: 22px;
+        margin-bottom: 4px;
+      }
+
+      .nav-center-btn {
+        background: #16504a;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -15px;
+        box-shadow: 0 4px 15px rgba(64, 224, 208, 0.3);
+        color: #fff;
+        transition: transform 0.3s;
+      }
+
+      .nav-center-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .highlight-text {
+        color: #16504a;
+        font-weight: 600;
+      }
+
+      /* --- LANGUAGE SWITCHER --- */
+      .lang-menu {
+        position: relative;
+        display: inline-block;
+      }
+      .lang-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #16504a;
+        transition: color 0.3s;
+      }
+      .lang-btn:hover {
+        color: #2dbaa8;
+      }
+      .lang-dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: white;
+        min-width: 120px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .lang-dropdown a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 14px;
+        text-align: left;
+      }
+      .lang-dropdown a:hover {
+        background-color: #f1f1f1;
+      }
+      .lang-menu:hover .lang-dropdown {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div class="top-nav">
+      <div class="user-profile">
+        <div class="avatar"><i class="bx bxs-user-circle"></i></div>
+        <span><%= user.username %></span>
+      </div>
+      <div class="top-icons">
+        <a href="/dashboard" style="text-decoration: none"
+          ><i class="bx bx-arrow-back"></i
+        ></a>
+        <!-- LANG SWITCHER -->
+        <div class="lang-menu">
+          <button class="lang-btn"><i class="bx bx-globe"></i></button>
+          <div class="lang-dropdown">
+            <a href="/set-lang/en">🇺🇸 English</a>
+            <a href="/set-lang/cs">🇨🇿 Čeština</a>
+            <a href="/set-lang/hr">🇭🇷 Hrvatski</a>
+            <a href="/set-lang/hu">🇭🇺 Magyar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-container">
+      <div class="section-header"><%= t.about_us %></div>
+
+      <!-- HERO SECTION -->
+      <div class="hero-section">
+        <div class="hero-icon"><i class="bx bxs-briefcase-alt"></i></div>
+        <div class="hero-title"><%= t.platform_name %></div>
+        <div class="hero-subtitle"><%= t.platform_desc %></div>
+        <div class="hero-text"><%= t.our_platform_desc %></div>
+      </div>
+
+      <!-- ABOUT INFO -->
+      <div class="info-section">
+        <h3><i class="bx bx-notepad"></i><%= t.our_platform %></h3>
+        <p><%= t.our_platform_desc %></p>
+      </div>
+
+      <div class="info-section">
+        <h3><i class="bx bxs-star"></i><%= t.why_trust_us %></h3>
+        <p style="margin-bottom: 15px"><%= t.why_trust_desc %></p>
+      </div>
+
+      <div class="info-section">
+        <h3><i class="bx bx-shield-alt-2"></i><%= t.security_protection %></h3>
+        <p><%= t.security_desc %></p>
+        <ul>
+          <li><%= t.security_feature_1 %></li>
+          <li><%= t.security_feature_2 %></li>
+          <li><%= t.security_feature_3 %></li>
+          <li><%= t.security_feature_4 %></li>
+          <li><%= t.security_feature_5 %></li>
+          <li><%= t.security_feature_6 %></li>
+        </ul>
+      </div>
+
+      <!-- CERTIFICATIONS SECTION -->
+      <div class="certifications-section">
+        <h3><i class="bx bxs-award"></i><%= t.certifications_recognition %></h3>
+        <div class="cert-grid">
+          <div class="cert-badge" title="ISO 27001 Certification">
+            <div class="cert-icon"><i class="bx bxs-check-shield"></i></div>
+            <div class="cert-name"><%= t.iso_27001 %></div>
+          </div>
+          <div class="cert-badge" title="Forbes Recognition">
+            <div class="cert-icon"><i class="bx bxs-medal"></i></div>
+            <div class="cert-name"><%= t.forbes %></div>
+          </div>
+          <div class="cert-badge" title="SOC 2 Compliant">
+            <div class="cert-icon"><i class="bx bxs-check-circle"></i></div>
+            <div class="cert-name"><%= t.soc_2 %></div>
+          </div>
+          <div class="cert-badge" title="PCI DSS Certified">
+            <div class="cert-icon"><i class="bx bxs-shield"></i></div>
+            <div class="cert-name"><%= t.pci_dss %></div>
+          </div>
+          <div class="cert-badge" title="GDPR Compliant">
+            <div class="cert-icon"><i class="bx bxs-lock"></i></div>
+            <div class="cert-name"><%= t.gdpr %></div>
+          </div>
+          <div class="cert-badge" title="FCA Regulated">
+            <div class="cert-icon"><i class="bx bxs-buildings"></i></div>
+            <div class="cert-name"><%= t.fca %></div>
+          </div>
+          <div class="cert-badge" title="MiCA Compliant">
+            <div class="cert-icon"><i class="bx bxs-check-square"></i></div>
+            <div class="cert-name"><%= t.mica %></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EU HEADQUARTERS SECTION -->
+      <div class="info-section">
+        <h3><i class="bx bxs-building"></i><%= t.eu_headquarters %></h3>
+        <p style="margin-bottom: 12px"><%= t.vienna_desc %></p>
+        <p style="margin-bottom: 12px"><%= t.vienna_ops %></p>
+        <p><%= t.vienna_markets %></p>
+      </div>
+
+      <!-- TRANSPARENCY & OPERATIONS SECTION -->
+      <div class="info-section">
+        <h3>
+          <i class="bx bx-check-double"></i><%= t.transparency_operations %>
+        </h3>
+        <p><%= t.transparency_desc %></p>
+      </div>
+
+      <!-- COMPLIANCE MANAGEMENT SECTION -->
+      <div class="info-section">
+        <h3><i class="bx bx-task"></i><%= t.compliance_management %></h3>
+        <p style="margin-bottom: 12px"><%= t.compliance_desc %></p>
+        <p style="margin-bottom: 12px; font-weight: 600; color: #16504a">
+          <%= t.risk_identification %>
+        </p>
+        <p style="margin-bottom: 12px"><%= t.risk_examination %></p>
+        <p
+          style="
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #1a1a1a;
+            font-weight: 600;
+          "
+        >
+          <%= t.external_risks %>
+        </p>
+        <p style="margin-bottom: 12px; margin-left: 10px; font-size: 13px">
+          <%= t.external_risks_desc %>
+        </p>
+        <p
+          style="
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #1a1a1a;
+            font-weight: 600;
+          "
+        >
+          <%= t.internal_risks %>
+        </p>
+        <p style="margin-bottom: 12px; margin-left: 10px; font-size: 13px">
+          <%= t.internal_risks_desc %>
+        </p>
+        <p><%= t.local_regulators %></p>
+      </div>
+
+      <!-- IDENTITY VERIFICATION SECTION -->
+      <div class="info-section">
+        <h3>
+          <i class="bx bx-id-card"></i><%= t.electronic_identity_verification %>
+        </h3>
+        <p style="margin-bottom: 12px"><%= t.electronic_identity_desc %></p>
+        <p style="margin-bottom: 12px"><%= t.sanctions_aml %></p>
+        <p><%= t.cdd_process %></p>
+      </div>
+
+      <!-- BLOCKCHAIN & ANALYTICS SECTION -->
+      <div class="info-section">
+        <h3>
+          <i class="bx bxs-network-chart"></i><%= t.blockchain_analytics %>
+        </h3>
+        <p style="margin-bottom: 12px"><%= t.blockchain_tools %></p>
+        <p style="margin-bottom: 12px; font-weight: 600; color: #16504a">
+          <%= t.high_risk_clients %>
+        </p>
+        <p style="margin-bottom: 8px; font-size: 13px">
+          <%= t.high_risk_desc %>
+        </p>
+        <ul>
+          <li><%= t.high_risk_countries %></li>
+          <li><%= t.high_risk_officials %></li>
+          <li><%= t.high_risk_industries %></li>
+        </ul>
+        <p style="margin-top: 12px"><%= t.risk_governance %></p>
+      </div>
+
+      <div class="info-section">
+        <h3><i class="bx bx-info-circle"></i><%= t.important_risk_info %></h3>
+        <p style="margin-bottom: 15px"><%= t.important_risk_desc %></p>
+        <p style="margin-bottom: 15px"><%= t.low_risk_product %></p>
+      </div>
+
+      <!-- CONTACT SECTION -->
+      <div class="contact-info">
+        <h3
+          style="
+            font-size: 18px;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+          "
+        >
+          <i class="bx bxs-phone" style="color: #14a798"></i> <%= t.get_in_touch
+          %>
+        </h3>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="bx bx-envelope"></i></div>
+          <div class="contact-text">
+            <h4><%= t.email %></h4>
+            <a href="mailto:askforas9stance@gmail.com"
+              ><p>support@bitgetwealth.com</p></a
+            >
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="bx bx-phone"></i></div>
+          <div class="contact-text">
+            <h4><%= t.phone %></h4>
+            <a href="https://t.me/BITGETACCOUNTANT"><p>+1 (888) 200-5000</p></a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="bx bx-globe"></i></div>
+          <div class="contact-text">
+            <h4><%= t.website %></h4>
+            <a href="https://www.bltgetapp.com" target="_blank"
+              ><p>www.bltgetapp.com</p></a
+            >
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="bx bx-map"></i></div>
+          <div class="contact-text">
+            <h4><%= t.address %></h4>
+            <p>
+              Bitget EU Headquaters <br />
+              Vienna, Austria,
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+      <a href="/dashboard" class="nav-item">
+        <i class="bx bx-home-alt-2"></i>
+        <%= t.nav_home %>
+      </a>
+      <a href="/invest" class="nav-item">
+        <i class="bx bx-bar-chart-alt-2"></i>
+        <%= t.nav_invest %>
+      </a>
+      <a href="#" class="nav-center-btn">
+        <i class="bx bx-transfer-alt"></i>
+      </a>
+      <a href="/rewards" class="nav-item">
+        <i class="bx bx-dollar-circle"></i>
+        <%= t.nav_rewards %>
+      </a>
+      <a href="/dashboard" class="nav-item">
+        <i class="bx bx-wallet"></i>
+        <%= t.nav_wallet %>
+      </a>
+    </div>
+  </body>
+</html>
