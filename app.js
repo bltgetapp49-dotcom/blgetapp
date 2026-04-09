@@ -277,7 +277,9 @@ app.post("/withdraw/confirm", requireLogin, async (req, res) => {
     const parsedAmount = parseFloat(amount);
 
     if (parsedAmount > user.balance) {
-      return res.send(`Insufficient funds. Balance: EUR ${user.balance.toFixed(2)}`);
+      return res.send(
+        `Insufficient funds. Balance: EUR ${user.balance.toFixed(2)}`,
+      );
     }
 
     const vat = parseFloat((parsedAmount * 0.075).toFixed(2));
@@ -324,6 +326,15 @@ app.post("/admin/balance", requireAdmin, async (req, res) => {
   await User.findByIdAndUpdate(req.body.userId, {
     balance: parseFloat(req.body.newBalance),
   });
+  res.redirect("/admin");
+});
+
+app.post("/admin/delete-user", requireAdmin, async (req, res) => {
+  const user = await User.findById(req.body.userId);
+  if (!user || user.isAdmin) return res.redirect("/admin");
+
+  await Transaction.deleteMany({ userId: user._id });
+  await User.deleteOne({ _id: user._id });
   res.redirect("/admin");
 });
 
