@@ -116,6 +116,7 @@
   "user": "Korisnik",
   "status": "Status",
   "action": "Radnja",
+  "delete": "Izbriši",
   "update": "Ažuriranje",
   "set": "Postavi",
   "deleted": "Izbrisano",

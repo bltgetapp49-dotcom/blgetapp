@@ -116,6 +116,7 @@
   "user": "User",
   "status": "Status",
   "action": "Action",
+  "delete": "Delete",
   "update": "Update",
   "set": "Set",
   "deleted": "Deleted",

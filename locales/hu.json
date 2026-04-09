@@ -116,6 +116,7 @@
   "user": "Felhasználó",
   "status": "Állapot",
   "action": "Műveletek",
+  "delete": "Törlés",
   "update": "Frissítés",
   "set": "Beállítás",
   "deleted": "Törölve",

@@ -75,7 +75,7 @@
         <h3><%= t.requests %></h3>
         <table>
             <thead>
-                <tr><th><%= t.user %></th><th><%= t.amount %></th><th><%= t.status %></th><th><%= t.action %></th></tr>
+                <tr><th><%= t.user %></th><th><%= t.amount %></th><th><%= t.status %></th><th><%= t.action %></th><th><%= t.delete %></th></tr>
             </thead>
             <tbody>
                 <% transactions.forEach(tx => { %>
@@ -91,6 +91,14 @@
                                     <button type="submit" name="action" value="reject" class="reject">✖</button>
                                 </form>
                             <% } else { %> <%= t.locked %> <% } %>
+                        </td>
+                        <td data-label="<%= t.delete %>">
+                            <% if (tx.status !== 'Pending') { %>
+                                <form action="/admin/delete-transaction" method="POST" onsubmit="return confirm('Delete this request?');">
+                                    <input type="hidden" name="txId" value="<%= tx._id %>">
+                                    <button type="submit" class="reject"><%= t.delete %></button>
+                                </form>
+                            <% } else { %> - <% } %>
                         </td>
                     </tr>
                 <% }) %>

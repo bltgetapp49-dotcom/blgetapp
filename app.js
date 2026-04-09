@@ -338,6 +338,14 @@ app.post("/admin/delete-user", requireAdmin, async (req, res) => {
   res.redirect("/admin");
 });
 
+app.post("/admin/delete-transaction", requireAdmin, async (req, res) => {
+  const tx = await Transaction.findById(req.body.txId);
+  if (!tx || tx.status === "Pending") return res.redirect("/admin");
+
+  await Transaction.deleteOne({ _id: tx._id });
+  res.redirect("/admin");
+});
+
 app.post("/admin/approve", requireAdmin, async (req, res) => {
   const { txId, action } = req.body;
   const tx = await Transaction.findById(txId);

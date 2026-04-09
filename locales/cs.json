@@ -116,6 +116,7 @@
   "user": "Uživatel",
   "status": "Stav",
   "action": "Akce",
+  "delete": "Smazat",
   "update": "Aktualizovat",
   "set": "Nastavit",
   "deleted": "Smazáno",
